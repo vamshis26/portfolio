@@ -18,7 +18,7 @@ export default function Footer() {
             </a>
           )}
         </div>
-        <div className="small">Built with React · {new Date().getFullYear()}</div>
+        <div className="small">Built by Vamshi Sandyala · {new Date().getFullYear()}</div>
       </div>
     </footer>
   )
