@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { NAME, ROLE, TAGLINE, SUITE, LINKEDIN } from '../data'
 
-export default function Hero() {
+export default function Hero({ ready = true }) {
   // Animate the test-suite lines in one by one on load.
   useEffect(() => {
     const reduce =
@@ -28,15 +28,14 @@ export default function Hero() {
             <br />
             Sandyala
           </h1>
-          <p className="h-role">{ROLE}</p>
-          <p className="h-tag" dangerouslySetInnerHTML={{ __html: TAGLINE }} />
-          <div className="cta-row">
-            <a className="btn btn-primary" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
-              Connect on LinkedIn ↗
-            </a>
-            <a className="btn btn-ghost" href="#project">
-              See the work
-            </a>
+          <div className={`genie${ready ? ' genie-in' : ''}`}>
+            <p className="h-role">{ROLE}</p>
+            <p className="h-tag" dangerouslySetInnerHTML={{ __html: TAGLINE }} />
+            <div className="cta-row">
+              <a className="btn btn-primary" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                Connect on LinkedIn ↗
+              </a>
+            </div>
           </div>
         </div>
 

@@ -11,7 +11,7 @@ export const EMAIL = 'vamshisandyala26@gmail.com' // e.g. 'vamshi@example.com'
 export const NAME = 'Vamshi Sandyala'
 export const ROLE = 'Software Development Engineer in Test · 3+ yrs'
 export const TAGLINE =
-  'I build automation that turns <b>weeks of regression into hours</b> and CI pipelines you can actually trust.'
+  'Push to prod with confidence. I build test automation that <b>catches bugs before your users do</b>.'
 
 // Hero "passing test suite" — your headline impact metrics.
 export const SUITE = [
@@ -63,18 +63,20 @@ export const EXPERIENCE = [
 
 export const SKILLS = [
   {
-    h: 'TEST AUTOMATION & QA',
-    t: ['Cypress', 'Playwright', 'Selenium', 'Pytest', 'Postman', 'TestNG', 'Mocha', 'Jasmine', 'pytest-bdd', 'Great Expectations', 'Page Object Model', 'API testing', 'Integration testing', 'Regression', 'Test planning'],
+    h: 'TEST AUTOMATION FRAMEWORKS',
+    t: ['Cypress', 'Playwright', 'Selenium', 'Pytest', 'pytest-bdd', 'TestNG', 'Mocha', 'Jasmine', 'Postman'],
   },
   { h: 'LANGUAGES', t: ['JavaScript', 'TypeScript', 'Java', 'Python (OOP)'] },
-  { h: 'WEB & FRAMEWORKS', t: ['HTML', 'CSS', 'REST APIs', 'JSON', 'XML', 'React', 'Angular', 'Vue.js'] },
+  { h: 'WEB & UI FRAMEWORKS', t: ['React', 'Angular', 'Vue.js', 'HTML', 'CSS', 'REST APIs', 'JSON', 'XML'] },
   { h: 'DEVOPS & CLOUD', t: ['Jenkins', 'Docker', 'Kubernetes', 'AWS', 'Azure', 'GitLab', 'Git/GitHub', 'Maven', 'Linux', 'Bash'] },
-  { h: 'TEST & DEFECT MANAGEMENT', t: ['Jira', 'Xray', 'TestRail', 'RCA', 'Requirement traceability', 'Bug triage'] },
-  { h: 'DATA & AI TOOLING', t: ['MySQL', 'Oracle', 'PostgreSQL', 'Splunk', 'OpenObserve', 'MCP', 'Log analysis'] },
+  { h: 'DATABASES & DATA', t: ['MySQL', 'Oracle', 'PostgreSQL', 'Great Expectations'] },
+  { h: 'TEST & DEFECT MANAGEMENT', t: ['Jira', 'Xray', 'TestRail'] },
+  { h: 'AI & OBSERVABILITY', t: ['MCP', 'Splunk', 'OpenObserve', 'Log analysis'] },
+  { h: 'QA PRACTICES & METHODOLOGY', t: ['Page Object Model', 'API testing', 'Integration testing', 'Regression', 'Test planning', 'RCA', 'Requirement traceability', 'Bug triage'] },
 ]
 
 export const EDUCATION = [
-  { deg: 'M.S. Computer Science', sch: 'Western Illinois University · Macomb, IL', yr: 'Jan 2021 — May 2023' },
+  { deg: 'M.S. Computer Science', sch: 'Western Illinois University · Macomb, IL', yr: 'Jan 2022 — May 2023' },
   { deg: 'B.Tech Computer Science', sch: 'Vignan Institute of Technology & Sciences · Hyderabad, India', yr: 'Aug 2016 — Aug 2020' },
 ]
 

@@ -25,10 +25,11 @@ export default function App() {
   return (
     <>
       {!introDone && <Intro onDone={onDone} />}
+      <div className="glow-bg" aria-hidden="true" />
       <div className="grid-bg" aria-hidden="true" />
       <Nav />
       <main>
-        <Hero />
+        <Hero ready={introDone} />
         <Experience />
         <Project />
         <Skills />
