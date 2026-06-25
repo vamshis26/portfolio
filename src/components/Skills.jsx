@@ -1,50 +1,52 @@
 import { SKILLS } from '../data'
 
-// Brand logos. `si` = Simple Icons CDN (served in brand color by default);
-// `dv` = Devicon (full multicolor) for brands Simple Icons no longer hosts.
-// `color` overrides near-black brand colors that would vanish on the dark theme.
-// `wide` is for wordmark logos that aren't square.
-// Concept skills (Regression, Bug triage, etc.) have no logo and are omitted.
-const LIGHT = 'e8eef6'
-const LOGO = {
-  Cypress: { si: 'cypress' },
-  Playwright: { dv: 'playwright/playwright-original.svg' },
-  Selenium: { si: 'selenium' },
-  Pytest: { si: 'pytest' },
-  Mocha: { si: 'mocha' },
-  Jasmine: { si: 'jasmine' },
-  Postman: { si: 'postman' },
-  JavaScript: { si: 'javascript' },
-  TypeScript: { si: 'typescript' },
-  Java: { dv: 'java/java-original.svg' },
-  'Python (OOP)': { si: 'python' },
-  HTML: { si: 'html5' },
-  CSS: { si: 'css' },
-  JSON: { si: 'json', color: LIGHT },
-  React: { si: 'react' },
-  Angular: { si: 'angular', color: 'dd0031' },
-  'Vue.js': { si: 'vuedotjs' },
-  Jenkins: { si: 'jenkins' },
-  Docker: { si: 'docker' },
-  Kubernetes: { si: 'kubernetes' },
-  AWS: { dv: 'amazonwebservices/amazonwebservices-plain-wordmark.svg', wide: true },
-  Azure: { dv: 'azure/azure-original.svg' },
-  GitLab: { si: 'gitlab' },
-  'Git/GitHub': { si: 'github', color: LIGHT },
-  Maven: { si: 'apachemaven' },
-  Linux: { si: 'linux' },
-  Bash: { si: 'gnubash' },
-  Jira: { si: 'jira' },
-  MySQL: { si: 'mysql' },
-  Oracle: { dv: 'oracle/oracle-original.svg' },
-  PostgreSQL: { si: 'postgresql' },
-  Splunk: { si: 'splunk', color: LIGHT },
-  MCP: { si: 'modelcontextprotocol', color: LIGHT },
-}
+// Logos are vendored locally in src/assets/logos and bundled by Vite (inlined
+// as data URIs), so there are no per-logo network requests at runtime.
+const logos = import.meta.glob('../assets/logos/*.svg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
 
-function logoSrc(meta) {
-  if (meta.dv) return `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${meta.dv}`
-  return `https://cdn.simpleicons.org/${meta.si}${meta.color ? `/${meta.color}` : ''}`
+const logoUrl = (key) => logos[`../assets/logos/${key}.svg`]
+
+// Maps each branded skill to its local logo file. Concept skills
+// (Regression, Bug triage, etc.) have no logo and are omitted.
+// `wide` marks wordmark logos that aren't square (e.g. AWS).
+const LOGO = {
+  Cypress: { key: 'cypress' },
+  Playwright: { key: 'playwright' },
+  Selenium: { key: 'selenium' },
+  Pytest: { key: 'pytest' },
+  Mocha: { key: 'mocha' },
+  Jasmine: { key: 'jasmine' },
+  Postman: { key: 'postman' },
+  JavaScript: { key: 'javascript' },
+  TypeScript: { key: 'typescript' },
+  Java: { key: 'java' },
+  'Python (OOP)': { key: 'python' },
+  HTML: { key: 'html' },
+  CSS: { key: 'css' },
+  JSON: { key: 'json' },
+  React: { key: 'react' },
+  Angular: { key: 'angular' },
+  'Vue.js': { key: 'vue' },
+  Jenkins: { key: 'jenkins' },
+  Docker: { key: 'docker' },
+  Kubernetes: { key: 'kubernetes' },
+  AWS: { key: 'aws', wide: true },
+  Azure: { key: 'azure' },
+  GitLab: { key: 'gitlab' },
+  'Git/GitHub': { key: 'github' },
+  Maven: { key: 'maven' },
+  Linux: { key: 'linux' },
+  Bash: { key: 'bash' },
+  Jira: { key: 'jira' },
+  MySQL: { key: 'mysql' },
+  Oracle: { key: 'oracle' },
+  PostgreSQL: { key: 'postgresql' },
+  Splunk: { key: 'splunk' },
+  MCP: { key: 'mcp' },
 }
 
 export default function Skills() {
@@ -60,18 +62,15 @@ export default function Skills() {
               <div className="tags">
                 {s.t.map((t) => {
                   const meta = LOGO[t]
+                  const src = meta && logoUrl(meta.key)
                   return (
                     <span className="tag" key={t}>
-                      {meta && (
+                      {src && (
                         <img
                           className={`tag-logo${meta.wide ? ' tag-logo--wide' : ''}`}
-                          src={logoSrc(meta)}
+                          src={src}
                           alt=""
                           aria-hidden="true"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none'
-                          }}
                         />
                       )}
                       {t}
