@@ -4,7 +4,7 @@ export default function Project() {
   return (
     <section className="section" id="project">
       <div className="wrap reveal">
-        <span className="eyebrow">▸ signature_work</span>
+        <span className="eyebrow">▸ Signature work</span>
         <h2 className="sec-title">The project I'm known for</h2>
         <p className="sec-lead">
           Most testers wait on logs. I made the logs answer questions.

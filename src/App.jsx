@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import useReveal from './hooks/useReveal'
 import Intro from './components/Intro'
 import Nav from './components/Nav'
@@ -11,8 +11,16 @@ import Footer from './components/Footer'
 
 export default function App() {
   useReveal()
-  const [introDone, setIntroDone] = useState(false)
-  const onDone = useCallback(() => setIntroDone(true), [])
+  const [introDone, setIntroDone] = useState(() => sessionStorage.getItem('introSeen') === '1')
+  const onDone = useCallback(() => {
+    sessionStorage.setItem('introSeen', '1')
+    setIntroDone(true)
+  }, [])
+
+  useEffect(() => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <>
@@ -21,8 +29,8 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Project />
         <Experience />
+        <Project />
         <Skills />
         <EduCerts />
         <Footer />

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#071a2f; --ink:#eaf1fa; --muted:#90a6c2; --accent:#f6b00e; --pass:#3fd68c;
+    --line:rgba(120,170,225,0.14); --line-strong:rgba(120,170,225,0.26);
+    --display:'Space Grotesk',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{margin:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--display);
+    position:relative; padding:72px 80px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .grid{
+    position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.6;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:48px 48px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 30% 0%,#000 30%,transparent 80%);
+  }
+  .glow{position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(246,176,14,.18),transparent 62%);z-index:0}
+  .top,.mid,.bot{position:relative;z-index:1}
+  .top{display:flex;align-items:center;gap:16px}
+  .logo{width:54px;height:54px;border-radius:13px;border:1.5px solid rgba(246,176,14,.4);background:#071a2f;
+    display:flex;align-items:center;justify-content:center}
+  .wordmark{font-family:var(--mono);font-size:18px;letter-spacing:.04em;color:var(--muted)}
+  .wordmark b{color:var(--ink)}
+  h1{font-family:var(--display);font-weight:700;font-size:92px;line-height:.98;letter-spacing:-.03em}
+  .role{font-family:var(--mono);font-size:24px;color:var(--accent);margin-top:22px;letter-spacing:.01em}
+  .tag{font-size:30px;color:var(--muted);margin-top:20px;max-width:30ch;line-height:1.35}
+  .tag b{color:var(--ink);font-weight:600}
+  .bot{display:flex;align-items:center;justify-content:space-between}
+  .metrics{display:flex;gap:12px}
+  .chip{font-family:var(--mono);font-size:17px;color:var(--ink);border:1px solid var(--line-strong);
+    border-radius:999px;padding:9px 16px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.02)}
+  .chip .ck{color:var(--pass);font-weight:700}
+  .url{font-family:var(--mono);font-size:18px;color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+
+  <div class="top">
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 22 L11 32 L20 42" stroke="#f6b00e" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M44 22 L53 32 L44 42" stroke="#f6b00e" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 33 L30 39 L41 25" stroke="#3fd68c" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wordmark">vamshi<b>.test()</b></div>
+  </div>
+
+  <div class="mid">
+    <h1>Vamshi Sandyala</h1>
+    <div class="role">Software Development Engineer in Test · 3+ yrs</div>
+    <div class="tag">Automation that turns <b>weeks of regression into hours</b> — and CI pipelines you can trust.</div>
+  </div>
+
+  <div class="bot">
+    <div class="metrics">
+      <div class="chip"><span class="ck">✓</span> weeks → ~4h</div>
+      <div class="chip"><span class="ck">✓</span> ~90% pass rate</div>
+      <div class="chip"><span class="ck">✓</span> −50% triage time</div>
+    </div>
+    <div class="url">vamshis26.github.io/portfolio</div>
+  </div>
+</body>
+</html>

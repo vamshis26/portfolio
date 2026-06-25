@@ -23,11 +23,6 @@ export default function Hero() {
     <header className="hero" id="top">
       <div className="wrap hero-grid">
         <div>
-          <span className="eyebrow">
-            describe(<span className="dim">"</span>
-            {NAME}
-            <span className="dim">"</span>)
-          </span>
           <h1 className="h-name">
             Vamshi
             <br />
@@ -59,7 +54,7 @@ export default function Hero() {
           <div className="runner-body">
             {SUITE.map((s, i) => (
               <div className="t-line" key={i}>
-                <span className="tick">✓</span>
+                <span className="tick">{i+1}</span>
                 <span className="t-name">{s.name}</span>
                 <span className="t-val">{s.val}</span>
               </div>
