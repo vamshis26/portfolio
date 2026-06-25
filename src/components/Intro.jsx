@@ -5,8 +5,8 @@ export default function Intro({ onDone }) {
   const [phase, setPhase] = useState('show') // 'show' | 'fade'
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('fade'), 1400)
-    const t2 = setTimeout(() => onDone(), 1900)
+    const t1 = setTimeout(() => setPhase('fade'), 850)
+    const t2 = setTimeout(() => onDone(), 1300)
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [onDone])
 

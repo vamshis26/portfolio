@@ -4,9 +4,7 @@ export default function Footer() {
   return (
     <footer className="foot" id="contact">
       <div className="wrap reveal">
-        <span className="eyebrow">expect(conversation).toStart()</span>
-        <h2>Let's talk testing.</h2>
-        <p>Open to SDET and QA automation roles — remote or relocation.</p>
+        <h2>Let's talk.</h2>
         <div className="cta-row foot-cta">
           <a className="btn btn-primary" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
             Connect on LinkedIn ↗

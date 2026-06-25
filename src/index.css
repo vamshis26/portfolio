@@ -8,8 +8,8 @@
   --ink: #eaf1fa;
   --muted: #90a6c2;
   --muted-2: #6e86a4;
-  --accent: #ffb13c;
-  --accent-press: #f39b17;
+  --accent: #f6b00e;
+  --accent-press: #d9990a;
   --pass: #3fd68c;
   --maxw: 1080px;
   --display: 'Space Grotesk', system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -117,8 +117,14 @@ main {
   font-size: 14px;
   color: var(--muted);
 }
+.nav-links a {
+  transition: color 0.15s ease;
+}
 .nav-links a:hover {
   color: var(--ink);
+}
+.nav-links a.active {
+  color: var(--accent);
 }
 @media (max-width: 620px) {
   .nav-links {

@@ -4,7 +4,7 @@ export default function Experience() {
   return (
     <section className="section" id="experience">
       <div className="wrap reveal">
-        <span className="eyebrow">▸ experience.log</span>
+        <span className="eyebrow">▸ Experience</span>
         <h2 className="sec-title">Where I've shipped quality</h2>
         <p className="sec-lead">
           Three years across billing and AdTech platforms — framework design,

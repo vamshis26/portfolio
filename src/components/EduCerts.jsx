@@ -5,8 +5,8 @@ export default function EduCerts() {
     <section className="section" id="education">
       <div className="wrap reveal two">
         <div>
-          <span className="eyebrow">▸ education</span>
-          <h2 className="sec-title sec-title-sm">Education</h2>
+          <span className="eyebrow">▸ Education</span>
+          {/* <h2 className="sec-title sec-title-sm">Education</h2> */}
           {EDUCATION.map((e, i) => (
             <div className="edu-item" key={i}>
               <div className="deg">{e.deg}</div>
@@ -16,8 +16,8 @@ export default function EduCerts() {
           ))}
         </div>
         <div>
-          <span className="eyebrow">▸ certifications</span>
-          <h2 className="sec-title sec-title-sm">Certifications</h2>
+          <span className="eyebrow">▸ Certifications</span>
+          {/* <h2 className="sec-title sec-title-sm">Certifications</h2> */}
           <div className="cert-list">
             {CERTS.map((c, i) => (
               <div className="cert" key={i}>
