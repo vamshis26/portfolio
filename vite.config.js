@@ -5,4 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/portfolio/',
   plugins: [react()],
+  build: {
+    // Inline assets up to 10KB as data URIs so all skill logos are bundled
+    // into the JS (no per-logo network requests at runtime).
+    assetsInlineLimit: 10240,
+  },
 })
