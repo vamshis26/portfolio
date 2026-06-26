@@ -29,6 +29,10 @@
 html {
   scroll-behavior: auto;
 }
+html {
+  scrollbar-width: none; /* Firefox — hide native bar, rail is the indicator */
+  -ms-overflow-style: none; /* old Edge/IE */
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -37,6 +41,12 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome/Safari */
 }
 a {
   color: inherit;
@@ -133,15 +143,6 @@ main {
   align-items: center;
   justify-content: flex-end;
   height: 62px;
-}
-.brand {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--ink);
-  letter-spacing: 0.02em;
-}
-.brand b {
-  color: var(--accent);
 }
 .nav-links {
   display: flex;
@@ -437,6 +438,12 @@ main {
   position: relative;
   overflow: hidden;
   box-shadow: var(--glass-shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.project:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(246, 176, 14, 0.12);
 }
 .project::after {
   content: '';
@@ -482,6 +489,11 @@ main {
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   padding: 6px 12px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.chip:hover {
+  color: var(--ink);
+  border-color: var(--accent);
 }
 .proj-impact {
   font-family: var(--mono);
@@ -507,10 +519,14 @@ main {
   border-radius: 16px;
   box-shadow: var(--glass-shadow);
   padding: 32px 34px;
-  transition: background 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .job:hover {
+  transform: translateY(-3px);
   background: var(--glass-bg-strong);
+  border-color: var(--line-strong);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(246, 176, 14, 0.12);
 }
 @media (max-width: 760px) {
   .job {
@@ -892,5 +908,100 @@ main {
   }
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* SCROLL TIMELINE RAIL */
+.scroll-rail {
+  position: fixed;
+  right: 26px;
+  top: 18vh;
+  height: 64vh;
+  width: 14px;
+  z-index: 4;
+  pointer-events: none;
+}
+.scroll-rail-track,
+.scroll-rail-fill {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  width: 2px;
+  border-radius: 2px;
+}
+.scroll-rail-track {
+  height: 100%;
+  background: var(--line-strong);
+}
+.scroll-rail-fill {
+  background: var(--accent);
+  box-shadow: 0 0 8px -1px var(--accent);
+}
+.scroll-rail-dot {
+  position: absolute;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  padding: 0;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.scroll-rail-dot:hover {
+  transform: scale(1.25);
+}
+.scroll-rail-dot.reached {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.scroll-rail-label {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  white-space: nowrap;
+  text-align: right;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.scroll-rail-dot:hover .scroll-rail-label {
+  opacity: 1;
+  color: var(--ink);
+}
+/* Active section's label stays visible — a "you are here" marker */
+.scroll-rail-dot.active .scroll-rail-label {
+  opacity: 1;
+  color: var(--accent);
+}
+.scroll-rail-cursor {
+  position: absolute;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 12px -1px var(--accent);
+}
+/* Hide until the side gutter is wide enough to clear the centered content.
+   Content maxes at 1080px; below ~1240px the rail would crowd the cards. */
+@media (max-width: 1240px) {
+  .scroll-rail {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-rail-dot {
+    transition: none;
   }
 }
