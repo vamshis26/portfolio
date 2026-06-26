@@ -1,4 +1,5 @@
 import { SKILLS } from '../data'
+import MacWindow from './MacWindow'
 
 // Logos are vendored locally in src/assets/logos and bundled by Vite (inlined
 // as data URIs), so there are no per-logo network requests at runtime.
@@ -55,32 +56,34 @@ export default function Skills() {
       <div className="wrap reveal">
         <span className="eyebrow">▸ Tech Stack</span>
         {/* <h2 className="sec-title">Tools in the kit</h2> */}
-        <div className="skills">
-          {SKILLS.map((s, i) => (
-            <div className="skill-card" key={i}>
-              <h3>{s.h}</h3>
-              <div className="tags">
-                {s.t.map((t) => {
-                  const meta = LOGO[t]
-                  const src = meta && logoUrl(meta.key)
-                  return (
-                    <span className="tag" key={t}>
-                      {src && (
-                        <img
-                          className={`tag-logo${meta.wide ? ' tag-logo--wide' : ''}`}
-                          src={src}
-                          alt=""
-                          aria-hidden="true"
-                        />
-                      )}
-                      {t}
-                    </span>
-                  )
-                })}
+        <MacWindow title="tech-stack">
+          <div className="skills">
+            {SKILLS.map((s, i) => (
+              <div className="skill-card" key={i}>
+                <h3>{s.h}</h3>
+                <div className="tags">
+                  {s.t.map((t) => {
+                    const meta = LOGO[t]
+                    const src = meta && logoUrl(meta.key)
+                    return (
+                      <span className="tag" key={t}>
+                        {src && (
+                          <img
+                            className={`tag-logo${meta.wide ? ' tag-logo--wide' : ''}`}
+                            src={src}
+                            alt=""
+                            aria-hidden="true"
+                          />
+                        )}
+                        {t}
+                      </span>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </MacWindow>
       </div>
     </section>
   )
