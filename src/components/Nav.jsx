@@ -80,9 +80,6 @@ export default function Nav() {
   return (
     <nav className="nav">
       <div className="wrap">
-        {/* <a className="brand" href="#top">
-          vamshi<b>.</b>test()
-        </a> */}
         <button
           type="button"
           className={`nav-toggle${open ? ' open' : ''}`}

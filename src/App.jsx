@@ -3,6 +3,7 @@ import useReveal from './hooks/useReveal'
 import Intro from './components/Intro'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import ScrollTimeline from './components/ScrollTimeline'
 import Project from './components/Project'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
@@ -29,6 +30,7 @@ export default function App() {
       <div className="grid-bg" aria-hidden="true" />
       <div className="grain-bg" aria-hidden="true" />
       <Nav />
+      <ScrollTimeline />
       <main>
         <Hero ready={introDone} />
         <Experience />
