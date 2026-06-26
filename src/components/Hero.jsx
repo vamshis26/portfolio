@@ -48,7 +48,7 @@ export default function Hero({ ready = true }) {
             <span className="dot r" />
             <span className="dot y" />
             <span className="dot g" />
-            <span className="runner-title">impact.spec.js</span>
+            <span className="runner-title">impact</span>
           </div>
           <div className="runner-body">
             {SUITE.map((s, i) => (

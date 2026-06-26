@@ -27,6 +27,7 @@ export default function App() {
       {!introDone && <Intro onDone={onDone} />}
       <div className="glow-bg" aria-hidden="true" />
       <div className="grid-bg" aria-hidden="true" />
+      <div className="grain-bg" aria-hidden="true" />
       <Nav />
       <main>
         <Hero ready={introDone} />

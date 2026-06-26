@@ -27,11 +27,13 @@ function smoothScrollTo(targetY, duration = 700) {
 
 export default function Nav() {
   const [active, setActive] = useState('')
+  const [open, setOpen] = useState(false)
 
   const handleClick = (e, id) => {
     const el = document.getElementById(id)
     if (!el) return
     e.preventDefault()
+    setOpen(false) // close the mobile menu after picking a link
     const reduce =
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -81,7 +83,18 @@ export default function Nav() {
         {/* <a className="brand" href="#top">
           vamshi<b>.</b>test()
         </a> */}
-        <div className="nav-links">
+        <button
+          type="button"
+          className={`nav-toggle${open ? ' open' : ''}`}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <div className={`nav-links${open ? ' open' : ''}`}>
           {LINKS.map((l) => (
             <a
               key={l.id}

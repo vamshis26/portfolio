@@ -10,12 +10,12 @@
   --muted-2: #6e86a4;
   --accent: #f6b00e;
   --accent-press: #d9990a;
-  --pass: #3fd68c;
-  /* glassmorphism — soft, borderless, section-like (not boxy) */
-  --glass-bg: rgba(150, 190, 240, 0.045);
-  --glass-bg-strong: rgba(150, 190, 240, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-blur: 22px;
+  --pass: var(--accent); /* unified single accent — was green #3fd68c */
+  /* matte surfaces — solid, flat, no gloss or blur */
+  --glass-bg: #0c2742;
+  --glass-bg-strong: #0f2e4f;
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-blur: 0px;
   --glass-shadow: none;
   --maxw: 1080px;
   --display: 'Space Grotesk', system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -87,12 +87,22 @@ main {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* single accent (amber) only — keeps 60-30-10 discipline */
   background:
-    radial-gradient(40% 35% at 12% 18%, rgba(246, 176, 14, 0.26), transparent 70%),
-    radial-gradient(45% 40% at 88% 30%, rgba(63, 214, 140, 0.2), transparent 70%),
-    radial-gradient(50% 45% at 70% 88%, rgba(99, 152, 240, 0.28), transparent 72%),
-    radial-gradient(45% 40% at 25% 75%, rgba(190, 120, 240, 0.18), transparent 72%);
-  opacity: 1;
+    radial-gradient(45% 38% at 14% 16%, rgba(246, 176, 14, 0.2), transparent 70%),
+    radial-gradient(50% 45% at 86% 82%, rgba(246, 176, 14, 0.12), transparent 72%);
+  opacity: 0.6;
+}
+
+/* matte grain — fine speckle over the whole page (the matte "finish") */
+.grain-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .eyebrow {
@@ -148,9 +158,73 @@ main {
 .nav-links a.active {
   color: var(--accent);
 }
+
+/* hamburger — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0 9px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 @media (max-width: 620px) {
+  .nav-toggle {
+    display: flex;
+  }
   .nav-links {
-    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+    background: var(--bg-2);
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.7);
+    /* hidden state */
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-links a {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+  .nav-links a.active {
+    border-left: 2px solid var(--accent);
   }
 }
 
@@ -342,6 +416,16 @@ main {
   font-size: 16.5px;
 }
 
+/* Scroll-driven word reveal — words brighten left-to-right as the line
+   scrolls up the viewport. Base color is the bright ink; per-word opacity
+   (set inline by ScrollText) does the dim → bright wipe. */
+.scroll-text {
+  color: var(--ink);
+}
+.scroll-text span {
+  transition: opacity 120ms linear;
+}
+
 /* PROJECT */
 .project {
   background: var(--glass-bg-strong);
@@ -487,6 +571,52 @@ main {
   color: var(--pass);
   font-family: var(--mono);
   font-size: 13px;
+}
+
+/* macOS-style window frame — wraps a whole section (e.g. Tech Stack) as one
+   "window": a titlebar with traffic-light dots + a body holding the cards. */
+.mac-window {
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-shadow);
+}
+.mac-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.mac-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.mac-dot--r {
+  background: #ff5f56;
+}
+.mac-dot--y {
+  background: #ffbd2e;
+}
+.mac-dot--g {
+  background: #27c93f;
+}
+.mac-bar-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted-2);
+  margin-left: 8px;
+}
+.mac-body {
+  padding: 22px;
+}
+@media (max-width: 760px) {
+  .mac-body {
+    padding: 16px;
+  }
 }
 
 /* SKILLS */
