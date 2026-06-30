@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------------------
 
 export const LINKEDIN = 'https://www.linkedin.com/in/vamshi-sandyala/'
+export const GITHUB = 'https://github.com/vamshis26'
 
 // Optional: set an email to show an "Email me" button (see Footer.jsx).
 export const EMAIL = 'Vamshi.Sandyala@outlook.com' // e.g. 'vamshi@example.com'
